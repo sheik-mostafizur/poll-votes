@@ -14,3 +14,33 @@ Website name **Poll Votes**. This website will be very simple. There will be som
     > **Create Poll:** The user Creates a Poll following the data: Poll Title, Description, Options, with Add more Options and submit. Then redirect view polls page.
   - View Polls
     > User can be see single poll and put votes on poll. Then redirect view polls page.
+
+## Routes
+
+### Poll
+
+**POST ->** /create-poll **(schema)**
+
+    {
+      title,
+      description,
+      totalVotes: 0,
+      options: [
+        {
+          name,
+          voteCount: 0
+        },
+        {
+          name,
+          voteCount: 0
+        },
+      ]
+    }
+
+**GET ->** /view-polls/:id
+
+**GET ->** /view-polls
+
+### Vote
+
+**POST ->** /vote
