@@ -1,6 +1,44 @@
 <%- include('header'); -%>
   <header>
     <%- include('navbar'); -%>
-    <h1 class="display-1">Create Poll</h1>
+      <h1 class="display-1 text-center">Create Poll</h1>
   </header>
+
+  <section class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 my-5">
+
+        <form action="/create-poll" method="POST" class="shadow p-4">
+          <div class="mb-3">
+            <label for="title" class="form-label">Enter Poll Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="poll title">
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Enter Poll Description</label>
+            <textarea class="form-control" placeholder="poll description" id="description"
+              style="height: 100px"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroup-sizing-default">Option</span>
+              <input type="text" class="form-control" name="options">
+            </div>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroup-sizing-default">Option</span>
+              <input type="text" class="form-control" name="options">
+            </div>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroup-sizing-default">Option</span>
+              <input type="text" class="form-control" name="options">
+            </div>
+            <button class="btn btn-secondary btn-sm">Add more</button>
+          </div>
+          <input type="submit" value="Create A Poll" class="btn btn-primary w-100">
+        </form>
+      </div>
+    </div>
+  </section>
+
   <%- include('footer'); -%>
