@@ -25,7 +25,7 @@ app.get("/view-polls/:id", viewSinglePoll);
 app.get("/view-polls", viewPolls);
 
 app.get("/", (_req, res) => {
-  res.render("index");
+  res.render("index", {title: "Home | Poll Votes"});
 });
 
 mongodb()

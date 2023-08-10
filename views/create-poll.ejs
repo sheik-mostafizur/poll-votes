@@ -1,4 +1,5 @@
-<%- include('header'); -%>
+<%- include('header', {title}); -%>
+
   <header>
     <%- include('navbar'); -%>
       <h1 class="display-1 text-center">Create Poll</h1>
@@ -16,29 +17,49 @@
 
           <div class="mb-3">
             <label for="description" class="form-label">Enter Poll Description</label>
-            <textarea class="form-control" placeholder="poll description" id="description"
+            <textarea class="form-control" placeholder="poll description" id="description" name="description"
               style="height: 100px"></textarea>
           </div>
 
-          <div class="mb-3">
+          <div id="options">
             <div class="input-group">
-              <span class="input-group-text" id="inputGroup-sizing-default">Option</span>
+              <span class="input-group-text">Option</span>
               <input type="text" class="form-control" name="options">
             </div>
             <div class="input-group">
-              <span class="input-group-text" id="inputGroup-sizing-default">Option</span>
+              <span class="input-group-text">Option</span>
               <input type="text" class="form-control" name="options">
             </div>
             <div class="input-group">
-              <span class="input-group-text" id="inputGroup-sizing-default">Option</span>
+              <span class="input-group-text">Option</span>
               <input type="text" class="form-control" name="options">
             </div>
-            <button class="btn btn-secondary btn-sm">Add more</button>
           </div>
+          <button class="btn btn-secondary btn-sm mb-3" id="optionsBtn">Add more</button>
+
           <input type="submit" value="Create A Poll" class="btn btn-primary w-100">
         </form>
       </div>
     </div>
   </section>
+
+  <script>
+    const options = document.getElementById("options");
+    const optionsBtn = document.getElementById("optionsBtn");
+
+    optionsBtn.addEventListener('click', function (e) {
+      e.preventDefault()
+      options.appendChild(createOptions())
+    })
+
+    function createOptions() {
+      const div = document.createElement('div')
+      div.className = 'input-group'
+      div.innerHTML = `<span class="input-group-text">Option</span>
+              <input type="text" class="form-control" name="options">`
+      return div
+    }
+
+  </script>
 
   <%- include('footer'); -%>
