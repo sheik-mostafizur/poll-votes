@@ -12,29 +12,26 @@
   <h1 class="display-1 text-center">View Polls</h1>
   <div class="row">
 
-    <div class="col-md-6 offset-md-3">
-      <form class="shadow p-4" action="">
-        <h3>Title: Lorem ipsum dolor sit amet.</h3>
-        <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum impedit exercitationem
-          explicabo culpa dignissimos unde!</p>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="exampleForm" id="radioExample1" />
-          <label class="form-check-label" for="radioExample1">
-            Option 1
-          </label>
+    <div class="col-md-6 offset-md-3 shadow p-4">
+      <h3>Title: <%= poll.title %>
+      </h3>
+      <p>Description: <%= poll.description %>
+      </p>
+
+      <form action="/vote/<%= poll._id %>" method="POST">
+        <% for (const option of poll.options) { %>
+        <div class="mb-4">
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="optionId" id="<%= option._id %>" value="<%= option._id %>" />
+            <label class="form-check-label" for="<%= option._id %>">
+              <%= option.name %>
+            </label>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 15px">
+            <div class="progress-bar" style="width: <%= parseInt((parseInt(option.voteCount) / parseInt(poll.totalVote)) * 100) || 0 %>%"><%= parseInt((parseInt(option.voteCount) / parseInt(poll.totalVote)) * 100) || 0 %>%</div>
+          </div>
         </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="exampleForm" id="radioExample2" />
-          <label class="form-check-label" for="radioExample2">
-            Option 2
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="exampleForm" id="radioExample3" />
-          <label class="form-check-label" for="radioExample3">
-            Option 3
-          </label>
-        </div>
+        <% } %>
         <button type="submit" class="btn btn-primary">Vote Submit</button>
       </form>
     </div>

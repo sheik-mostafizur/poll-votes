@@ -11,6 +11,7 @@ const {
   createPollPost,
   viewPolls,
   viewSinglePoll,
+  votePoll,
 } = require("./pollController");
 
 app.set("view engine", "ejs");
@@ -23,6 +24,8 @@ app.post("/create-poll", createPollPost);
 
 app.get("/view-polls/:id", viewSinglePoll);
 app.get("/view-polls", viewPolls);
+
+app.post("/vote/:id", votePoll);
 
 app.get("/", (_req, res) => {
   res.render("index", {title: "Home | Poll Votes"});

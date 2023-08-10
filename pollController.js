@@ -34,8 +34,11 @@ exports.createPollPost = async (req, res) => {
   }
 };
 
-exports.viewSinglePoll = (_req, res) => {
-  res.render("view-single-poll");
+exports.viewSinglePoll = async (req, res) => {
+  const id = req.params.id;
+  const poll = await Poll.findById(id);
+
+  res.render("view-single-poll", {title: poll.title, poll});
 };
 
 exports.viewPolls = async (_req, res) => {
@@ -45,5 +48,25 @@ exports.viewPolls = async (_req, res) => {
       title: "Polls Not Available | Poll Votes",
     });
   }
-  res.render("view-polls", { polls, title: "View Polls | Poll Votes"});
+  res.render("view-polls", {polls, title: "View Polls | Poll Votes"});
+};
+
+exports.votePoll = async (req, res) => {
+  const id = req.params.id;
+  const optionId = req.body.optionId;
+
+  const poll = await Poll.findById(id);
+  const options = poll.options.map((opt) => {
+    if (opt.id === optionId) {
+      opt.voteCount = opt.voteCount + 1;
+    }
+    return opt;
+  });
+  const totalVote = poll.totalVote + 1;
+
+  await Poll.findOneAndUpdate({_id: poll.id}, {$set: {options, totalVote}});
+
+  const polls = await Poll.find();
+
+  res.render("view-polls", {polls, title: "View Polls | Poll Votes"});
 };
