@@ -1,4 +1,4 @@
-<% if (typeof title !== 'undefined') { %>
+<% if (typeof title !=='undefined' ) { %>
 <%- include('header', { title }); -%>
 <% } else { %>
 <%- include('header', { title: "Poll Votes" }); -%>
@@ -6,7 +6,15 @@
 
 <header>
   <%- include('navbar'); -%>
-  <h1 class="display-1">Home</h1>
 </header>
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="display-2 text-center my-5">Poll Votes System | Home</h1>
+      <p class="text-center">It's a very simple voting multiple website created with nodejs, express, ejs, mongodb</p>
+    </div>
+  </div>
+</section>
 
 <%- include('footer'); -%>
