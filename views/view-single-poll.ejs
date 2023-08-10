@@ -1,40 +1,44 @@
-<%- include('header', {title}); -%>
+<% if (typeof title !=='undefined' ) { %>
+<%- include('header', { title }); -%>
+<% } else { %>
+<%- include('header', { title: "Poll Votes" }); -%>
+<% } %>
 
-  <header>
-    <%- include('navbar'); -%>
-  </header>
+<header>
+  <%- include('navbar'); -%>
+</header>
 
-  <section class="container">
-    <h1 class="display-1 text-center">View Polls</h1>
-    <div class="row">
+<section class="container">
+  <h1 class="display-1 text-center">View Polls</h1>
+  <div class="row">
 
-      <div class="col-md-6 offset-md-3">
-        <form class="shadow p-4" action="">
-          <h3>Title: Lorem ipsum dolor sit amet.</h3>
-          <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum impedit exercitationem
-            explicabo culpa dignissimos unde!</p>
-          <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="exampleForm" id="radioExample1" />
-            <label class="form-check-label" for="radioExample1">
-              Option 1
-            </label>
-          </div>
-          <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="exampleForm" id="radioExample2" />
-            <label class="form-check-label" for="radioExample2">
-              Option 2
-            </label>
-          </div>
-          <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="exampleForm" id="radioExample3" />
-            <label class="form-check-label" for="radioExample3">
-              Option 3
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary">Vote Submit</button>
-        </form>
-      </div>
+    <div class="col-md-6 offset-md-3">
+      <form class="shadow p-4" action="">
+        <h3>Title: Lorem ipsum dolor sit amet.</h3>
+        <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum impedit exercitationem
+          explicabo culpa dignissimos unde!</p>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="exampleForm" id="radioExample1" />
+          <label class="form-check-label" for="radioExample1">
+            Option 1
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="exampleForm" id="radioExample2" />
+          <label class="form-check-label" for="radioExample2">
+            Option 2
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="exampleForm" id="radioExample3" />
+          <label class="form-check-label" for="radioExample3">
+            Option 3
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Vote Submit</button>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <%- include('footer'); -%>
+<%- include('footer'); -%>

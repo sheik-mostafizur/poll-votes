@@ -38,6 +38,12 @@ exports.viewSinglePoll = (_req, res) => {
   res.render("view-single-poll");
 };
 
-exports.viewPolls = (_req, res) => {
-  res.render("view-polls", {title: "View Polls | Poll Votes"});
+exports.viewPolls = async (_req, res) => {
+  const polls = await Poll.find();
+  if (!polls) {
+    return res.render("view-polls", {
+      title: "Polls Not Available | Poll Votes",
+    });
+  }
+  res.render("view-polls", { polls, title: "View Polls | Poll Votes"});
 };

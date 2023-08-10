@@ -1,6 +1,12 @@
-<%- include('header', {title}); -%>
-  <header>
-    <%- include('navbar'); -%>
-      <h1 class="display-1">Home</h1>
-  </header>
-  <%- include('footer'); -%>
+<% if (typeof title !== 'undefined') { %>
+<%- include('header', { title }); -%>
+<% } else { %>
+<%- include('header', { title: "Poll Votes" }); -%>
+<% } %>
+
+<header>
+  <%- include('navbar'); -%>
+  <h1 class="display-1">Home</h1>
+</header>
+
+<%- include('footer'); -%>
