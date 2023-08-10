@@ -17,7 +17,7 @@ exports.createPollPost = async (req, res) => {
     return {name: opt, voteCount: 0};
   });
 
-  if (!title || !description || !options) {
+  if (!title || !description || !options || options.length < 2) {
     return res.render("create-poll", {
       message: "Please provide the correct values.",
     });
@@ -25,7 +25,10 @@ exports.createPollPost = async (req, res) => {
   const poll = new Poll({title, description, options});
   try {
     await poll.save();
-    res.redirect("/view-polls", {title: "View Polls | Poll Votes"});
+
+    const polls = await Poll.find();
+    console.log(polls);
+    res.render("view-polls", {polls, title: "View Polls | Poll Votes"});
   } catch (error) {
     console.log(error);
     return res.render("create-poll", {
